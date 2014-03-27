@@ -7,6 +7,7 @@
 //
 
 #import "AddressesViewController.h"
+#import "SSHViewController.h"
 
 @interface AddressesViewController ()
 
@@ -41,8 +42,16 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    SSHViewController *sshViewController = segue.destinationViewController;
+    
+    sshViewController.serviceName = self.serviceName;
+    NSArray* array = [self.hostAndPort componentsSeparatedByString:@":"];
+    
+    sshViewController.host = [array objectAtIndex:0];
+    sshViewController.port = [array objectAtIndex:1];
+    
+    sshViewController.username = self.username;
+    sshViewController.password = self.password;
 }
 
 
@@ -86,12 +95,13 @@
     int count = [self.addresses count];
     if (count != 0) {
         NSString* currentHostandPort = [self.addresses objectAtIndex:indexPath.row];
+        [self setHostAndPort:currentHostandPort];
         
         UIAlertView *confirmSSH = [[UIAlertView alloc]initWithTitle:@"Do you want to connect to:"
                                                             message:currentHostandPort
                                                          delegate:self
                                                 cancelButtonTitle:@"Cancel"
-                                                otherButtonTitles:@"Connect by SSH", nil];
+                                                otherButtonTitles:@"Continue to Credentials", nil];
         
         [confirmSSH show];
     }
@@ -99,7 +109,26 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button: %i, was pressed.", buttonIndex);
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Continue to Credentials"]){
+        UIAlertView *askUsername = [[UIAlertView alloc]initWithTitle:@"Enter username"
+                                                             message:nil
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Cancel"
+                                                   otherButtonTitles:@"Continue to SSH", nil];
+        [askUsername setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
+        [askUsername show];
+    }
+    else if([title isEqualToString:@"Continue to SSH"]){
+        UITextField *username = [alertView textFieldAtIndex:0];
+        UITextField *password = [alertView textFieldAtIndex:1];
+        
+        self.username = username.text;
+        self.password = password.text;
+        
+        [self performSegueWithIdentifier:@"showSSH" sender:self];
+    }
 }
 
 

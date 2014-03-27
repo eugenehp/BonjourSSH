@@ -13,5 +13,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic, retain) NSString* serviceName;
 @property(nonatomic, retain) NSArray* addresses;
+@property(nonatomic, retain) NSString* hostAndPort;
+
+@property(nonatomic, retain) NSString* username;
+@property(nonatomic, retain) NSString* password;
 
 @end
