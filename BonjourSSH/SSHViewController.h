@@ -13,7 +13,7 @@
 @property(nonatomic, retain) NSString* serviceName;
 
 @property (nonatomic, strong) NSString *host;
-@property (nonatomic, strong) NSString *port;
+@property (nonatomic) NSInteger *port;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic) IBOutlet UITextView *textView;

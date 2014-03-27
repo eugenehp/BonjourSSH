@@ -37,7 +37,7 @@
     [self setTitle:self.serviceName];
     
     self.textView.editable = NO;
-    self.textView.selectable = NO;
+//    self.textView.selectable = NO;
     self.lastCommand = [[NSMutableString alloc] init];
     
     self.sshQueue = dispatch_queue_create("NMSSH.queue", DISPATCH_QUEUE_SERIAL);
@@ -57,7 +57,7 @@
     
     dispatch_once(&_onceToken, ^{
         dispatch_async(self.sshQueue, ^{
-            self.session = [NMSSHSession connectToHost:self.host withUsername:self.username];
+            self.session = [NMSSHSession connectToHost:self.host port:self.port withUsername:self.username];
             self.session.delegate = self;
             
             if (!self.session.connected) {

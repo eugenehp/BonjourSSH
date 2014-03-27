@@ -243,6 +243,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = www.eugenehp.tk;
 				TargetAttributes = {
+					29D6566D18E2880200BF5814 = {
+						DevelopmentTeam = 725EJD2Q72;
+					};
 					29D6568E18E2880300BF5814 = {
 						TestTargetID = 29D6566D18E2880200BF5814;
 					};
@@ -439,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BonjourSSH-adgqrzwzdgoqubcrbluxuoacskwt/Build/Products/Debug-iphoneos",
@@ -446,6 +450,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BonjourSSH/BonjourSSH-Prefix.pch";
 				INFOPLIST_FILE = "BonjourSSH/BonjourSSH-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -456,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BonjourSSH-adgqrzwzdgoqubcrbluxuoacskwt/Build/Products/Debug-iphoneos",
@@ -463,6 +469,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BonjourSSH/BonjourSSH-Prefix.pch";
 				INFOPLIST_FILE = "BonjourSSH/BonjourSSH-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

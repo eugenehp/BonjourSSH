@@ -32,13 +32,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     NSLog(@"viewDidLoad");
     
+    [self refresh:nil];
+    
+    [NSTimer scheduledTimerWithTimeInterval:10.0
+                                     target:self
+                                   selector:@selector(refresh:)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (IBAction)refresh:(id)sender
+{
+    NSLog(@"refreshing the list...");
     self.services = [[NSMutableArray alloc] init];
     self.serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [self.serviceBrowser setDelegate:self];
-    
     [self searchForBonjourServices];
 }
 
@@ -50,13 +60,11 @@
 
 
  #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
      ServiceViewController *serviceViewController = segue.destinationViewController;
      serviceViewController.serviceName = self.serviceName;
-//     NSLog(@"prepareForSegue, %@",[self serviceName]);
  }
 
 - (void)searchForBonjourServices
@@ -149,6 +157,19 @@
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict {
     NSLog(@"netService didNotResolve");
     [self.serviceResolver stop];
+    
+    [self alertAboutNotFound];
+}
+
+-(void)alertAboutNotFound{
+    NSString* message = @"Please check you are connected to the speaker or the speaker is connected to your Wi-Fi network.";
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No speakers found!"
+                                                   message:message
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark NSNetserviceBrowserDelegate

@@ -48,7 +48,7 @@
     NSArray* array = [self.hostAndPort componentsSeparatedByString:@":"];
     
     sshViewController.host = [array objectAtIndex:0];
-    sshViewController.port = [array objectAtIndex:1];
+    sshViewController.port = [[array objectAtIndex:1] integerValue];
     
     sshViewController.username = self.username;
     sshViewController.password = self.password;

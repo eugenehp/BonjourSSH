@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// root/1234567890 port 44
+
 @interface ServiceViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
