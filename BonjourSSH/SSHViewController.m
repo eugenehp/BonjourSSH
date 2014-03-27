@@ -112,6 +112,7 @@
     dispatch_async(self.sshQueue, ^{
         [self.session disconnect];
     });
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)appendToTextView:(NSString *)text {
