@@ -1,5 +1,5 @@
 //
-//  BonjourViewController.h
+//  AddressesViewController.h
 //  BonjourSSH
 //
 //  Created by Eugene on 3/26/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServiceViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AddressesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic, retain) NSString* serviceName;

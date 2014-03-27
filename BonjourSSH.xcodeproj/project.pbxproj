@@ -24,6 +24,7 @@
 		29D656A918E2890400BF5814 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D656A818E2890400BF5814 /* CFNetwork.framework */; };
 		29D656B318E28DD100BF5814 /* BonjourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D656B218E28DD100BF5814 /* BonjourViewController.m */; };
 		29D656B918E298E300BF5814 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D656B818E298E300BF5814 /* ServiceViewController.m */; };
+		29D656BC18E3202200BF5814 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D656BB18E3202200BF5814 /* AddressesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		29D656B218E28DD100BF5814 /* BonjourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourViewController.m; sourceTree = "<group>"; };
 		29D656B718E298E300BF5814 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
 		29D656B818E298E300BF5814 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		29D656BA18E3202200BF5814 /* AddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressesViewController.h; sourceTree = "<group>"; };
+		29D656BB18E3202200BF5814 /* AddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				29D656B218E28DD100BF5814 /* BonjourViewController.m */,
 				29D656B718E298E300BF5814 /* ServiceViewController.h */,
 				29D656B818E298E300BF5814 /* ServiceViewController.m */,
+				29D656BA18E3202200BF5814 /* AddressesViewController.h */,
+				29D656BB18E3202200BF5814 /* AddressesViewController.m */,
 			);
 			path = BonjourSSH;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				29D6568218E2880300BF5814 /* AppDelegate.m in Sources */,
 				29D656B918E298E300BF5814 /* ServiceViewController.m in Sources */,
 				29D6567E18E2880300BF5814 /* main.m in Sources */,
+				29D656BC18E3202200BF5814 /* AddressesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +509,7 @@
 				29D656A218E2880300BF5814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29D656A318E2880300BF5814 /* Build configuration list for PBXNativeTarget "BonjourSSHTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +518,7 @@
 				29D656A518E2880300BF5814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

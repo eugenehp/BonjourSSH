@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 www.eugenehp.tk. All rights reserved.
 //
 
-#import "BonjourViewController.h"
+#import "ServiceViewController.h"
 #include <arpa/inet.h>
 
-#import "ServiceViewController.h"
+#import "AddressesViewController.h"
 
 @interface ServiceViewController ()
 @property(nonatomic, retain) NSNetServiceBrowser *serviceBrowser;
@@ -54,9 +54,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ServiceViewController *serviceViewController = segue.destinationViewController;
-    serviceViewController.serviceName = self.serviceName;
-    //     NSLog(@"prepareForSegue, %@",[self serviceName]);
+    AddressesViewController *addressesViewController = segue.destinationViewController;
+    
+    addressesViewController.serviceName = self.serviceName;
+    addressesViewController.addresses = self.addresses;
 }
 
 - (void)searchForBonjourServices
@@ -99,6 +100,7 @@
     } else {
         NSNetService *service = [self.services objectAtIndex:indexPath.row];
         displayString = [NSString stringWithFormat:@"%@.%@",[service name],[service type]];
+        self.serviceName = displayString;
     }
     
     cell.textLabel.text = displayString;
@@ -108,26 +110,24 @@
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNetService *service = [self.services objectAtIndex:indexPath.row];
-    self.serviceName = [NSString stringWithFormat:@"%@.%@",[service name],[service type]];
-    
-    [self performSegueWithIdentifier:@"showService" sender:self];
-    //    if (self.serviceResolver) {
-    //        [self.serviceResolver stop];
-    //    }
-    //
-    //    int count = [self.services count];
-    //    if (count != 0) {
-    //        self.serviceResolver = [self.services objectAtIndex:indexPath.row];
-    //        self.serviceResolver.delegate = self;
-    //        [self.serviceResolver resolveWithTimeout:0.0];
-    //    }
+    if (self.serviceResolver) {
+        [self.serviceResolver stop];
+    }
+
+    int count = [self.services count];
+    if (count != 0) {
+        self.serviceResolver = [self.services objectAtIndex:indexPath.row];
+        self.serviceResolver.delegate = self;
+        [self.serviceResolver resolveWithTimeout:0.0];
+    }
 }
 
 #pragma mark NSNetServiceDelegate
 - (void)netServiceDidResolveAddress:(NSNetService *)service {
     [self.serviceResolver stop];
     NSLog(@"%ld", (long)service.port);
+    
+    NSMutableArray* addresses = [[NSMutableArray alloc] init];
     
     for (NSData* data in [service addresses]) {
         char addressBuffer[100];
@@ -140,13 +140,18 @@
             
             int port = ntohs(socketAddress->sin_port);
             if (addressStr && port) {
-                NSLog(@"Found service at %s:%d", addressStr, port);
-                NSString *urlString = [NSString stringWithFormat:@"http://%s:%d", addressStr, port];
-                NSURL *url = [ [ NSURL alloc ] initWithString: urlString];
-                [[UIApplication sharedApplication] openURL:url];
+//                NSLog(@"Found service at %s:%d", addressStr, port);
+//                NSString *urlString = [NSString stringWithFormat:@"http://%s:%d", addressStr, port];
+//                NSURL *url = [ [ NSURL alloc ] initWithString: urlString];
+//                [[UIApplication sharedApplication] openURL:url];
+                [addresses addObject:[NSString stringWithFormat:@"%s:%d", addressStr, port]];
             }
         }
     }
+    
+    [self setAddresses:addresses];
+    NSLog(@"found addresses - %@",addresses);
+    [self performSegueWithIdentifier:@"showAddresses" sender:self];
     
 }
 
